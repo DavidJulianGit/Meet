@@ -132,7 +132,7 @@ This app allows users to search for a city and get a list of events hosted in th
 
 ## Technology - Serverless Functions
 
-This app is useing serverless functions (AWS Lambda) for obtaining the access token from the authorization server via mulitple steps.
+This app is using serverless functions (AWS Lambda) for obtaining the access token from the authorization server via mulitple steps.
 
 1. User opens apps ans visits events page.
 2. Serverless functions on AWS Lambda requests OAuth consent screen from Google OAuth provider.
