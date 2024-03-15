@@ -1,3 +1,9 @@
+# Meet - events app
+
+This app allows users to search for a city and get a list of events hosted in that city.
+
+## Features
+
 ### Feature 1: Filter Events By City
 
 #### User Strory
@@ -123,3 +129,22 @@
    -  Given I am on the main page
    -  When I navigate to the chart section
    -  Then I should see a chart displaying the number of upcoming events in each city
+
+## Technology - Serverless Functions
+
+This app is useing serverless functions (AWS Lambda) for obtaining the access token from the authorization server via mulitple steps.
+
+1. User opens apps ans visits events page.
+2. Serverless functions on AWS Lambda requests OAuth consent screen from Google OAuth provider.
+3. Consent screen link is returned to the serverless function.
+4. User is redirected to the Google login page and asked for consent.
+5. User logs in and grants consent.
+6. Authorization code is granted by Google OAuth and sent to the serverless function.
+7. Serverless function requests access token, authorization code included in request.
+8. Access token is granted and received by serverless function.
+
+Also, serverless functions are used for reading events from the Google Calendar API:
+
+1. Serverless function carries out users request to get events (access token included in request).
+2. Google Calendar API grants access and returns events to the serverless function.
+3. Serverless function returns events to React app / the user.
