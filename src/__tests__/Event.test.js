@@ -27,21 +27,21 @@ describe('<Event /> component', () => {
    });
 
    test('event details are hidden by default', () => {
-      expect(EventComponent.container.querySelector('#event-details')).not.toBeInTheDocument();
+      expect(EventComponent.container.querySelector('.details')).not.toBeInTheDocument();
    });
 
    test("renders event details when user clicks 'show details' button", async () => {
       const user = userEvent.setup();
       const button = EventComponent.queryByRole('button');
       await user.click(button, 'Show Details');
-      const details = EventComponent.container.querySelector('#event-details')
+      const details = EventComponent.container.querySelector('.details')
       expect(details).toBeInTheDocument();
    });
 
    test("hides event details when user clicks 'hide details' button", async () => {
       const user = userEvent.setup();
       const button = EventComponent.queryByRole('button');
-      const details = EventComponent.container.querySelector('#event-details')
+      const details = EventComponent.container.querySelector('.details')
       await user.click(button, 'Hide Details');
       expect(details).not.toBeInTheDocument();
    });
