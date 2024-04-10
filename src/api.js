@@ -45,12 +45,18 @@ export const getEvents = async () => {
 
    if (token) {
       removeQuery();
-      const url = "https://bqagfpk8n1.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
+      const url = "https://bqagfpk8n1.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/" + token;
       const response = await fetch(url);
+      if (!response.ok) {
+         // Handle HTTP errors
+         throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const result = await response.json();
       if (result) {
          return result.events;
-      } else return null;
+      } else {
+         return null;
+      }
    }
 };
 

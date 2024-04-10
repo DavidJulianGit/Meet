@@ -5,11 +5,15 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+// APM
+import * as atatus from 'atatus-spa';
+atatus.config('b3934d26b87c488fafd3fc03c6025a17').install();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+   <React.StrictMode>
+      <App />
+   </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
@@ -21,3 +25,4 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

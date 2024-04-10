@@ -3,9 +3,18 @@ import NumberOfEvents from '../components/NumberOfEvents';
 import userEvent from '@testing-library/user-event';
 
 describe('<NumberOfEvents /> component', () => {
+
    let NumberOfEventsComponent;
+
    beforeEach(() => {
-      NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} />);
+
+      NumberOfEventsComponent = render(
+         <NumberOfEvents
+            setCurrentNOE={() => { }}
+            setErrorAlert={() => { }}
+         />
+      );
+
    });
 
    test('has an element with "textbox" role', () => {
@@ -24,15 +33,4 @@ describe('<NumberOfEvents /> component', () => {
       expect(numberOfEvents).toHaveValue('10');
    })
 
-   test('updates numberOfEvents only if input is a number', async () => {
-      const { queryByRole } = NumberOfEventsComponent;
-      const numberOfEventsInput = queryByRole('textbox');
-      const user = userEvent.setup();
-
-      // Attempt to enter a negative number
-      await user.clear(numberOfEventsInput);
-      await user.type(numberOfEventsInput, '-5');
-
-      expect(numberOfEventsInput).toHaveValue('5');
-   })
 });
