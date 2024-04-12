@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import { XLg } from 'react-bootstrap-icons';
 
 const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
    const [showSuggestions, setShowSuggestions] = useState(false);
@@ -17,7 +22,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       // Alert
       let infoText;
       if (filteredLocations.length === 0) {
-         infoText = "We can not find the city you are looking for. Please try another city"
+         infoText = "We can not find the city you are looking for. Please try another city."
       } else {
          infoText = ""
       }
@@ -28,6 +33,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       setSuggestions(allLocations);
    }, [`${allLocations}`]);
 
+   // A suggestion is clicked
    const handleItemClicked = (event) => {
       const value = event.target.textContent;
       setQuery(value);
@@ -36,26 +42,59 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       setInfoAlert("");
    };
 
+   // CitySearch Input is reset through x-button
+   const resetCitySearch = () => {
+      setQuery('');
+      setShowSuggestions(false);
+      setSuggestions(allLocations);
+      setCurrentCity('See all cities');
+      setInfoAlert('');
+   }
+
    return (
-      <div id="city-search">
-         <input
-            type="text"
-            className="city"
-            placeholder="Search for a city"
-            value={query}
-            onFocus={() => setShowSuggestions(true)}
-            onChange={handleInputChanged}
-         />
-         {showSuggestions ?
-            <ul className="suggestions">
+      <div className="position-relative">
+         <InputGroup className=" px-0 mb-3">
+            <Form.Control
+               className="border-primary"
+               placeholder="Search for a city"
+               value={query}
+               onFocus={() => setShowSuggestions(true)}
+               onChange={handleInputChanged}
+            />
+            <Button
+               variant="outline-primary"
+               onClick={resetCitySearch}
+               disabled={query === ''}
+            >
+               <XLg />
+            </Button>
+         </InputGroup>
+
+         {showSuggestions &&
+            <ListGroup className="suggestions" role='list'>
                {suggestions.map((suggestion) => {
-                  return <li onClick={handleItemClicked} key={suggestion}>{suggestion}</li>
+                  return (
+                     <ListGroup.Item
+                        className=" px-0"
+                        action
+                        onClick={handleItemClicked}
+                        key={suggestion}
+                        role='listitem'
+                     >
+                        {suggestion}
+                     </ListGroup.Item>
+                  );
                })}
-               <li key='See all cities' onClick={handleItemClicked}>
+               <ListGroup.Item
+                  className=" px-0"
+                  action
+                  key='See all cities'
+                  onClick={handleItemClicked}
+                  role='listitem'
+               >
                   <b>See all cities</b>
-               </li>
-            </ul>
-            : null
+               </ListGroup.Item>
+            </ListGroup>
          }
       </div>
    )

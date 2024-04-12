@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+
+
 // APM
 import * as atatus from 'atatus-spa';
 atatus.config('b3934d26b87c488fafd3fc03c6025a17').install();

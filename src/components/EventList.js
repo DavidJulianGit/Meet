@@ -1,12 +1,13 @@
 import Event from "./Event";
+import { ListGroup, Row, Col } from 'react-bootstrap';
 
 const EventList = ({ events }) => {
    return (
-      <ul id="event-list">
+      <ListGroup role='list' id="event-list ">
          {events ?
             events.map(event => <Event key={event.id} event={event} />) :
             null}
-      </ul>
+      </ListGroup>
    );
 }
 
