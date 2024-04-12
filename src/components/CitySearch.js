@@ -52,14 +52,15 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
    }
 
    return (
-      <div className="position-relative">
+      <div id='city-search' className="position-relative">
          <InputGroup className=" px-0 mb-3">
             <Form.Control
-               className="border-primary"
+               className="border-primary city"
                placeholder="Search for a city"
                value={query}
                onFocus={() => setShowSuggestions(true)}
                onChange={handleInputChanged}
+               role='textbox'
             />
             <Button
                variant="outline-primary"
