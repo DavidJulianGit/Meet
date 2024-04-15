@@ -1,6 +1,6 @@
 .App {
 	text-align: center;
-	padding: 0;
+	padding: 0 2rem;
 	max-width: 700px !important;
 }
 
@@ -28,6 +28,10 @@
 	transform: translateX(-50%);
 	z-index: 1000;
 	opacity: 0.9;
+}
+.logo {
+	width: 100%;
+	max-width: 400px;
 }
 /*
 ul {

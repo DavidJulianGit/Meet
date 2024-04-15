@@ -38,10 +38,20 @@ const removeQuery = () => {
 };
 
 export const getEvents = async () => {
+
    if (window.location.href.startsWith('http://localhost')) {
       return mockData;
    }
+
+   // Load events from local storage if user is offline
+   if (!navigator.onLine) {
+      const events = localStorage.getItem("lastEvents");
+
+      return events ? JSON.parse(events) : [];
+   }
+
    const token = await getAccessToken();
+
 
    if (token) {
       removeQuery();
@@ -51,12 +61,15 @@ export const getEvents = async () => {
          // Handle HTTP errors
          throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+
       const result = await response.json();
+
       if (result) {
+
+         localStorage.setItem("lastEvents", JSON.stringify(result.events));
          return result.events;
-      } else {
-         return null;
-      }
+      } else return null;
    }
 };
 
