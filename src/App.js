@@ -51,13 +51,6 @@ const App = () => {
       <Container className="App">
          <Row>
             <Col>
-               {/*   Alerts via OOP class syntax
-               <div className="alerts-container">
-                  {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
-                  {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
-                  {warninglert.length ? <WarningAlert text={errorAlert} /> : null}
-               </div>
-               */}
                {infoAlert.length ? <Alert variant='primary' className='alert' dismissible>   {infoAlert}  </Alert> : null}
                {errorAlert.length ? <Alert variant='danger' className='alert'> {errorAlert} </Alert> : null}
                {warningAlert.length ? <Alert variant='warning' className='alert' dismissible> {warningAlert} </Alert> : null}
