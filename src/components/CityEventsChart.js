@@ -1,3 +1,4 @@
+import { DEFAULT_INTERCEPT_RESOLUTION_PRIORITY } from 'puppeteer';
 import { useState, useEffect } from 'react';
 import {
    ScatterChart,
@@ -14,7 +15,7 @@ const CityEventsChart = ({ allLocations, events }) => {
 
    useEffect(() => {
       setData(getData());
-   }, [`${events}`]);
+   }, [events]); //"normal" syntax because with ´{events}´ the city graph does not update correctly
 
    const getData = () => {
       const data = allLocations.map((location) => {
